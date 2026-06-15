@@ -1,0 +1,29 @@
+{
+  "name": "SureAgents Test - Port Only (Broken)",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    },
+    "ghcr.io/danzilberdan/devcontainers/opencode:0": {}
+  },
+  "forwardPorts": [4096, 9999],
+  "containerEnv": {
+    "SUREAGENTS_PORT": "9999"
+  },
+  "mounts": [
+    {
+      "source": "${localWorkspaceFolder}/.opencode/auth.json",
+      "target": "/mnt/opencode-auth.json",
+      "type": "bind"
+    }
+  ],
+  "postCreateCommand": "echo 'Port-only test. SUREAGENTS_REMOTE is NOT set - expect failures.'",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  }
+}

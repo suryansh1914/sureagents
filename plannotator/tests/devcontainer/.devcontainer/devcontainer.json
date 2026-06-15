@@ -1,0 +1,30 @@
+{
+  "name": "SureAgents OpenCode Test",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    },
+    "ghcr.io/danzilberdan/devcontainers/opencode:0": {}
+  },
+  "forwardPorts": [4096, 9999],
+  "containerEnv": {
+    "SUREAGENTS_REMOTE": "1",
+    "SUREAGENTS_PORT": "9999"
+  },
+  "mounts": [
+    {
+      "source": "${localWorkspaceFolder}/.opencode/auth.json",
+      "target": "/mnt/opencode-auth.json",
+      "type": "bind"
+    }
+  ],
+  "postCreateCommand": "echo 'SureAgents devcontainer ready. Port 9999 should be forwarded.'",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  }
+}

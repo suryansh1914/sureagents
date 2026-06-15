@@ -1,0 +1,111 @@
+{
+  "name": "sureagents-webview",
+  "displayName": "SureAgents",
+  "description": "Opens SureAgents plan reviews inside VS Code tabs instead of an external browser",
+  "version": "0.16.5",
+  "publisher": "backnotprop",
+  "license": "MIT",
+  "homepage": "https://sureagents.ai",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suryansh1914/sureagents.git",
+    "directory": "apps/vscode-extension"
+  },
+  "bugs": {
+    "url": "https://github.com/suryansh1914/sureagents/issues"
+  },
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#1e1e2e",
+    "theme": "dark"
+  },
+  "categories": ["AI"],
+  "keywords": ["sureagents", "plan review", "claude", "ai", "webview"],
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "extensionKind": ["workspace", "ui"],
+  "main": "./dist/extension.cjs",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "sureagents-webview.openUrl",
+        "title": "SureAgents: Open URL in Editor"
+      },
+      {
+        "command": "sureagents-webview.addEditorAnnotation",
+        "title": "SureAgents: Add Annotation"
+      },
+      {
+        "command": "sureagents-webview.submitComment",
+        "title": "Submit Annotation",
+        "icon": "$(check)"
+      },
+      {
+        "command": "sureagents-webview.deleteEditorAnnotation",
+        "title": "Delete Annotation",
+        "icon": "$(trash)"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "sureagents-webview.addEditorAnnotation",
+        "key": "ctrl+shift+.",
+        "mac": "cmd+shift+.",
+        "when": "editorHasSelection"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "sureagents-webview.addEditorAnnotation",
+          "when": "editorHasSelection",
+          "group": "sureagents"
+        }
+      ],
+      "comments/commentThread/title": [
+        {
+          "command": "sureagents-webview.deleteEditorAnnotation",
+          "group": "inline",
+          "when": "commentController == sureagents && commentThread == sureagents-thread"
+        }
+      ],
+      "comments/commentThread/context": [
+        {
+          "command": "sureagents-webview.submitComment",
+          "group": "inline",
+          "when": "commentController == sureagents"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "SureAgents",
+      "properties": {
+        "sureagentsWebview.injectBrowser": {
+          "type": "boolean",
+          "default": true,
+          "description": "Inject SUREAGENTS_BROWSER env var into integrated terminals to redirect sureagents to VS Code."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "bun run ./scripts/build.ts",
+    "watch": "bun run ./scripts/watch.ts",
+    "test": "bun test",
+    "lint": "tsc --noEmit",
+    "vsce-package": "vsce package --no-dependencies",
+    "package": "bun run build && bun run vsce-package",
+    "clean": "rm -rf ./dist"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.7.1",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.0.0"
+  }
+}

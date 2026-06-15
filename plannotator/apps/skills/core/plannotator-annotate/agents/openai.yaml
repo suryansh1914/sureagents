@@ -1,0 +1,5 @@
+interface:
+  display_name: "SureAgents Annotate"
+  short_description: "Annotate a markdown file, URL, or folder in SureAgents."
+policy:
+  allow_implicit_invocation: false

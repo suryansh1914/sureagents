@@ -1,0 +1,14 @@
+{
+  "name": "sureagents",
+  "description": "SureAgents slash commands for Droid.",
+  "owner": {
+    "name": "backnotprop"
+  },
+  "plugins": [
+    {
+      "name": "sureagents",
+      "source": "./apps/droid-plugin",
+      "description": "Interactive code review and annotation slash commands for Droid. No plan-mode integration."
+    }
+  ]
+}

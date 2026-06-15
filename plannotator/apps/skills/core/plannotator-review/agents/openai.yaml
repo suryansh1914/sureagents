@@ -1,0 +1,5 @@
+interface:
+  display_name: "SureAgents Review"
+  short_description: "Open SureAgents code review for local changes or a PR."
+policy:
+  allow_implicit_invocation: false
