@@ -149,8 +149,8 @@ describe("Amp SureAgents plugin helpers", () => {
         "utf8",
       );
 
-      expect(resolveAmpWorkspaceRoot({ logPath, parentPid: 456 })).toBe(currentWorkspace);
-      expect(resolveAmpWorkspaceRoot({ logPath, parentPid: 999 })).toBe(currentWorkspace);
+      expect(resolveAmpWorkspaceRoot({ logPath, parentPid: 456 })).toBe(currentWorkspace.replace(/\\/g, "/"));
+      expect(resolveAmpWorkspaceRoot({ logPath, parentPid: 999 })).toBe(currentWorkspace.replace(/\\/g, "/"));
     } finally {
       rmSync(tempDir, { recursive: true, force: true });
     }
@@ -178,7 +178,7 @@ describe("Amp SureAgents plugin helpers", () => {
 
       const cwd = await resolveCwd(commandContextWithCwd(pluginCwd));
 
-      expect(cwd).toBe(workspace);
+      expect(cwd).toBe(workspace.replace(/\\/g, "/"));
     } finally {
       restoreEnv("AMP_LOG_FILE", originalLogFile);
       restoreEnv("SUREAGENTS_CWD", originalOverride);

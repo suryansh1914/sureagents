@@ -26,7 +26,8 @@ describe("install.sh", () => {
 
   test("hooks.json heredoc is valid JSON", () => {
     // Extract the JSON between the HOOKS_EOF heredoc markers
-    const match = script.match(/cat > "\$PLUGIN_HOOKS" << 'HOOKS_EOF'\n([\s\S]*?)\nHOOKS_EOF/);
+    // Handle both LF (Unix) and CRLF (Windows) line endings
+    const match = script.match(/cat > "\$PLUGIN_HOOKS" << 'HOOKS_EOF'[\r\n]+([\s\S]*?)[\r\n]+HOOKS_EOF/);
     expect(match).toBeTruthy();
     const json = JSON.parse(match![1]);
     expect(json.hooks.PermissionRequest).toBeArray();
