@@ -6,7 +6,7 @@
  */
 
 import { useEffect, useRef, useState, useCallback, type RefObject } from 'react';
-import Highlighter from '@sureagents/web-highlighter';
+import Highlighter from 'web-highlighter';
 import type { Annotation, EditorMode, ImageAttachment } from '../types';
 import { AnnotationType } from '../types';
 import type { QuickLabel } from '../utils/quickLabels';

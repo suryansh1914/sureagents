@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback, type RefObject } from 'react';
-import type Highlighter from '@sureagents/web-highlighter';
+import type Highlighter from 'web-highlighter';
 import type { InputMethod } from '../types';
 import { resolvePinpointTarget, type PinpointTarget } from '../utils/blockTargeting';
 
